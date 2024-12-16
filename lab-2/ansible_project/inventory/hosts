@@ -1,0 +1,2 @@
+[my_servers]
+remote_server ansible_host=185.91.52.23 ansible_user=root ansible_ssh_pass=RzuwBOCrnLMW

@@ -1,0 +1,26 @@
+---
+- name: Create, modify, and delete a file
+  hosts: my_servers  # хосты из файла inventory/hosts, где будем выполнять наш плейбук
+  become: yes
+  tasks:
+    - name: Create a file
+      ansible.builtin.file:
+        path: /tmp/testfile.txt
+        state: touch  # Создание пустого файла, если он не существует
+
+    - name: Add content to the file
+      ansible.builtin.copy:
+        content: "Hello, World! We are Lina & Kristina. Our team is beauty-sound."
+        dest: /tmp/testfile.txt
+        mode: '0644'  # Устанавливаем права доступа
+
+    - name: Change the content of the file before deletion
+      ansible.builtin.copy:
+        content: "BLA BLA BLA"
+        dest: /tmp/testfile.txt
+        mode: '0644'
+
+    - name: Delete the file
+      ansible.builtin.file:
+        path: /tmp/testfile.txt
+        state: absent  # Удаление файла
